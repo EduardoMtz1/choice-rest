@@ -66,7 +66,7 @@ public class HotelController {
         return ResponseEntity.ok(response.getServiceStatus());
     }
 
-    @GetMapping("/hotels/{name}")
+    @GetMapping("/hotels/find/{name}")
     public ResponseEntity<List<HotelInfo>> findAllHotelsByName(
             @PathVariable String name, 
             @RequestParam(required = false, defaultValue = "0") Integer pageNumber,
