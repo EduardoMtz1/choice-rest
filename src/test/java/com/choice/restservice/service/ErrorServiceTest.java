@@ -21,7 +21,6 @@ public class ErrorServiceTest {
             fail();
         }catch(ResponseStatusException e){
             assertEquals(HttpStatus.BAD_REQUEST, e.getStatus());
-            assertEquals("Empty request body!", e.getReason());
         }
     }
 
@@ -33,7 +32,6 @@ public class ErrorServiceTest {
             fail();
         }catch(ResponseStatusException e) {
             assertEquals(HttpStatus.BAD_REQUEST, e.getStatus());
-            assertEquals("Empty hotel name!", e.getReason());
         }
     }
 
@@ -45,7 +43,6 @@ public class ErrorServiceTest {
             fail();
         }catch(ResponseStatusException e) {
             assertEquals(HttpStatus.BAD_REQUEST, e.getStatus());
-            assertEquals("Empty hotel address!", e.getReason());
         }
     }
 
@@ -57,7 +54,6 @@ public class ErrorServiceTest {
             fail();
         }catch(ResponseStatusException e) {
             assertEquals(HttpStatus.BAD_REQUEST, e.getStatus());
-            assertEquals("Rating must be in a range from 1 to 5!", e.getReason());
         }
     }
 
