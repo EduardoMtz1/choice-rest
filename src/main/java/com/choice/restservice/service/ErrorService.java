@@ -14,16 +14,26 @@ public class ErrorService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Empty request body!");
         }
 
+        String message = "Body is missing the next parts: ";
+        Boolean isCorrect = true;
+
         if(hotel.getName() == null || hotel.getName().length() < 1) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Empty hotel name!");
+            isCorrect = false;
+            message = message + "- Hotel name ";
         }
 
         if(hotel.getAddress() == null || hotel.getAddress().length() < 1) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Empty hotel address!");
+            isCorrect = false;
+            message = message + "- Hotel address ";
         }
 
         if(hotel.getRating() < 1 || hotel.getRating() > 5) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Rating must be in a range from 1 to 5!");
+            isCorrect = false;
+            message = message + "- Rating must be in a range from 1 to 5";
+        }
+
+        if(!isCorrect) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, message);
         }
     }
 
