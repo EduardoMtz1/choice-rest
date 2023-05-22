@@ -9,10 +9,17 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.choice.wsdl.ServiceStatus;
+
 @ControllerAdvice
 public class HotelControllerErrorHandler {
     @ExceptionHandler(value = {ResponseStatusException.class})
-    protected ResponseEntity<String> responseStatusExceptionHandler(ResponseStatusException exception) {
-        return ResponseEntity.status(exception.getStatus()).contentType(MediaType.APPLICATION_JSON).body(Objects.requireNonNull(exception.getReason()));
+    protected ResponseEntity<ServiceStatus> responseStatusExceptionHandler(ResponseStatusException exception) {
+        ServiceStatus serviceStatus = new ServiceStatus();
+        serviceStatus.setStatusCode(exception.getStatus().toString());
+        serviceStatus.setMessage(Objects.requireNonNull(exception.getReason()));
+        return ResponseEntity.status(exception.getStatus()).contentType(MediaType.APPLICATION_JSON).body(serviceStatus);
+        
     }
 }
+
